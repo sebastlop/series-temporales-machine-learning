@@ -1,41 +1,23 @@
 # Series Temporales
 
-## Generalidades
+## Objetivos del curso
+En este curso se pretende abordar de manera somera el problema del análisis de series temporales. Dado que el tema del análisis de series temporales es basto, no se pretende aquí un estudio exhaustivo, sino más bien presentar una colección de herramientas básicas para el análisis.
 
-Una serie temporal (ST) es un conjunto de datos ordenados en el tiempo. Ejemplos de series temporales son mediciones de variables ambientales, señales de ultrasonido, sensores de movimiento durante un período, secuencias de imágenes ordenadas en el tiempo, etc.
+Este curso está pensado desde un enfoque completamente práctico.
 
-Una ST puede ser univariada o multivariada. Por ejemplo, si tenemos una serie de medidas de temperatura a lo largo del tiempo, solo tenemos una variable, mientras que para una secuencia de imágenes el valor de cada pixel varía en el tiempo. Cada uno de los pixeles corresponde a una variable. 
+## Requerimientos mínimos
 
-Para un caso general de $m$ variables $\pmb{X} = (X_1, X_2, ..., X_m)$, la ST que consiste en $N$ datos temporales se puede representar simplemente como $\left[\pmb{X}(t_1), \pmb{X}(t_2),..., \pmb{X}(t_N)\right]$.
+* Rudimentos de estadística descriptiva y análisis de variables aleatorias
+* Rudimentos de cálculo diferencial.
+* Programación en algún lenguaje computacional (c, c++, Fortran, Python), el curso se desarrollará en Python
 
-Además, es importante notar que los valores que pueden tomar las diferentes variables $X_i$ pueden ser discretos (como en el caso de los valores de intensidad de los píxeles), o contínuos como en el caso de la temperatura. El proceso de obtención de las variables (proceso de medición) influye en esta características. Dado que se trabaja con datos digitales, a la postre todas las variables serán discretas.
- 
-## Tipos de series temporales
+## Contenidos
 
-- Continua: está valuada para todos los instantes 
-- Discreta: está valuada en algunos instantes
-- Repetitiva: repite un patrón a lo largo de toda la serie
-- Periódica: caso particular de serie repetitiva donde el patrón se repite espacios de tiempos uniformes. Existe un período constante
-- Determinista: puede ser expresada de manera unívoca por una expresión analítica
-- No deerminista: no puede ser expresada analíticamente. Esto puede darse por dos motivos fundamentales:
-    
-    - No se tiene acceso a toda la información del problema
-    - Tiene componentes aleatorias
-
-## Procesos estocásticos
-
-
-## La adquisición de datos
-
-Cuando las series temporales se obtienen a partir de mediciones de variables analógicas continuas, se realizan una serie de procesos relacionados con la transducción, acondicionamientos de señales, entre otras etapas. Luego las señales acondicionadas deben ser muestreadas y cuantificadas.
-
-Las etapas descriptas no se tratarán aquí, ya que son un objeto de estudio en sí mismo, sólo diremos que:
-
-> * El muestreo es la realización periódica con que se toma una medición.
-> * La cuantificación es la medición de la amplitud de la señal de entrada. 
-
-Así, la frecuencia de muestreo nos dará los intervalos temporales que habrán entre mediciones, mientras que la cuantificación nos proporcionará la magnitud medida.
-
-* Teorema de Nyquist
-
-* Aliasing
+1. Rudimentos de Python 
+    * Librerías NumPy, SciPy, Matplotlib
+2. Definiciones de series temporales
+3. Técnicas simples de descripción
+    * Tendencias
+    * Estacionalidad
+    * Autocorrelación
+4.  Estimación en el dominio temporal
