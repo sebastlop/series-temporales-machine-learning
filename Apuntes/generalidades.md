@@ -11,12 +11,12 @@ Además, es importante notar que los valores que pueden tomar las diferentes var
  
 ## Tipos de series temporales
 
-- Continua: está valuada para todos los instantes 
-- Discreta: está valuada en algunos instantes
-- Repetitiva: repite un patrón a lo largo de toda la serie
-- Periódica: caso particular de serie repetitiva donde el patrón se repite en espacios de tiempo uniformes. Existe un período constante
-- Determinista: puede ser expresada de manera unívoca por una expresión analítica
-- No deerminista: no puede ser expresada analíticamente. Esto puede darse por dos motivos fundamentales:
+- __Continua__: está valuada para todos los instantes 
+- __Discreta__: está valuada en algunos instantes
+- __Repetitiva__: repite un patrón a lo largo de toda la serie
+- __Periódica__: caso particular de serie repetitiva donde el patrón se repite en espacios de tiempo uniformes. Existe un período constante
+- __Determinista__: puede ser expresada de manera unívoca por una expresión analítica
+- __No determinista__: no puede ser expresada analíticamente. Esto puede darse por dos motivos fundamentales:
     
     - No se tiene acceso a toda la información del problema
     - La naturaleza del proceso tiene componentes aleatorias

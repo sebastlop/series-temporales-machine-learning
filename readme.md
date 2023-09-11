@@ -21,3 +21,8 @@ Este curso está pensado desde un enfoque completamente práctico.
     * Estacionalidad
     * Autocorrelación
 4.  Estimación en el dominio temporal
+
+----
+## Pendientes
+
+* Leer y graficar datos Clase 1
