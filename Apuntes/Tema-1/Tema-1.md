@@ -1,7 +1,7 @@
 
 # 1. Definiciones
 
-Definiciones. Tipos. inspección ocular.
+Definiciones. Tipos. Inspección ocular.
 ---
 
 Una serie temporal (ST) es un conjunto de datos ordenados en el tiempo. Ejemplos de series temporales son mediciones de variables ambientales, señales de ultrasonido, sensores de movimiento durante un período, secuencias de imágenes ordenadas en el tiempo, etc.
