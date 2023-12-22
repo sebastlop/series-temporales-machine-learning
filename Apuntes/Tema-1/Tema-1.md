@@ -1,5 +1,8 @@
 
-## Generalidades
+# 1. Definiciones
+
+Definiciones. Tipos. inspección ocular.
+---
 
 Una serie temporal (ST) es un conjunto de datos ordenados en el tiempo. Ejemplos de series temporales son mediciones de variables ambientales, señales de ultrasonido, sensores de movimiento durante un período, secuencias de imágenes ordenadas en el tiempo, etc.
 
@@ -7,12 +10,15 @@ Una ST puede ser univariada o multivariada. Por ejemplo, si tenemos una serie de
 
 Para un caso general de $m$ variables $\pmb{X} = (X_1, X_2, ..., X_m)$, la ST que consiste en $N$ datos temporales se puede representar simplemente como $\left[\pmb{X}(t_1), \pmb{X}(t_2),..., \pmb{X}(t_N)\right]$.
 
-Además, es importante notar que los valores que pueden tomar las diferentes variables $X_i$ pueden ser discretos (como en el caso de los valores de intensidad de los píxeles), o continuos como en el caso de la temperatura. El proceso de obtención de las variables (proceso de medición) influye en esta características. Dado que se trabaja con datos digitales, a la postre todas las variables serán discretas.
+Además, es importante notar que los valores que pueden tomar las diferentes variables $X_i$ pueden ser discretos (como en el caso de los valores de intensidad de los píxeles), o continuos como en el caso de la temperatura. El proceso de obtención de las variables (proceso de medición) influye en estas características. Dado que se trabaja con datos digitales, a la postre todas las variables serán discretas.
  
 ## Tipos de series temporales
 
 - __Continua__: está valuada para todos los instantes 
+
+![ST continua](./pulso_sonido.png "señal continua típica")
 - __Discreta__: está valuada en algunos instantes
+![ST discreta](./precio_trigo.png "señal discreta típica (valores ficticios)")
 - __Repetitiva__: repite un patrón a lo largo de toda la serie
 - __Periódica__: caso particular de serie repetitiva donde el patrón se repite en espacios de tiempo uniformes. Existe un período constante
 - __Determinista__: puede ser expresada de manera unívoca por una expresión analítica
