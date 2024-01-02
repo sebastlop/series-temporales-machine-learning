@@ -19,29 +19,16 @@ Además, es importante notar que los valores que pueden tomar las diferentes var
 ![ST continua](./pulso_sonido.png "señal continua típica")
 - __Discreta__: está valuada en algunos instantes
 ![ST discreta](./precio_trigo.png "señal discreta típica (valores ficticios)")
-- __Repetitiva__: repite un patrón a lo largo de toda la serie
 - __Periódica__: caso particular de serie repetitiva donde el patrón se repite en espacios de tiempo uniformes. Existe un período constante
-- __Determinista__: puede ser expresada de manera unívoca por una expresión analítica
+![ST periodica](./periodica.png "señal periodica (valores ficticios)")
+- __Determinista__: puede ser expresada de manera unívoca por una expresión analítica. En el ejemplo de señal periódica anterior, la expresión exacta con la que fue generada es la siguiente $X(t)= \sin{(0.1 t)^2} \cos{(t)}$
 - __No determinista__: no puede ser expresada analíticamente. Esto puede darse por dos motivos fundamentales:
     
-    - No se tiene acceso a toda la información del problema
-    - La naturaleza del proceso tiene componentes aleatorias
+    - No se tiene acceso a toda la información del problema.
+    - La naturaleza del proceso tiene componentes aleatorias.
 
-## Procesos estocásticos
+![ST no determinista](./temps-bsas.png "Temperatura promedio diaria Buenos Aires")
 
-En un proceso estocástico $X$ corresponde a un conjunto de variables aleatorias
 
-## La adquisición de datos
-
-Cuando las series temporales se obtienen a partir de mediciones de variables analógicas continuas, se realizan una serie de procesos relacionados con la transducción, acondicionamientos de señales, entre otras etapas. Luego las señales acondicionadas deben ser muestreadas y cuantificadas.
-
-Las etapas descriptas no se tratarán aquí, ya que son un objeto de estudio en sí mismo, sólo diremos que:
-
-> * El muestreo es la realización periódica con que se toma una medición.
-> * La cuantificación es la medición de la amplitud de la señal de entrada. 
-
-Así, la frecuencia de muestreo nos dará los intervalos temporales que habrán entre mediciones, mientras que la cuantificación nos proporcionará la magnitud medida.
-
-* Teorema de Nyquist
-
-* Aliasing
+## Palabras finales
+La primera tarea que se debe realizar para poder caracterizar una serie temporal es realizar una inspección de ésta, utilizando diferentes herramientas, entre ellas la inspección ocular de los tipos de datos que se tienen a partir de tablas, como así tambien gráficos de cada tipo de variables cuando estos puedan ser realizados.
