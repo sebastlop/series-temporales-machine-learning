@@ -1,6 +1,6 @@
 # Tipos de Datos en Python
 
-Dado que este es un curso _hands on_, para desarrollar este tema, es preciso seguir este [link](./2-tipos-de-datos.ipynb). 
+Dado que este es un curso _hands on_, para desarrollar este tema, es preciso utilizar [este notebook](./2.1-tipos-de-datos.ipynb). 
 
 Antes de comenzar a describir los tipos de datos que puede manejar Python, es importante destacar que todo, **ABSOLUTAMENTE TODO** en Python es un objeto. Luego veremos en detalle que son los objetos, pero lo importante en este punto es comprender que python no maneja variables como los lenguajes compilados que conocemos usualmente.
 
