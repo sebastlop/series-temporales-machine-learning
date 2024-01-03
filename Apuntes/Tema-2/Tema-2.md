@@ -1,2 +1,0 @@
-# Rudimentos de Python
-
