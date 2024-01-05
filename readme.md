@@ -26,7 +26,7 @@ Para aprobar el curso, los aspirantes deberán elaborar cuatro informes de labor
 Definiciones. Tipos. inspección ocular.
 
 2. **Rudimentos de Python - Librerías fundamentales:**
-Tipos de datos. Procedimientos. Clases y objetos. Librerías csv, os y datetime, Librerías numéricas y científicas: Numpy, Scipy. Librería de gráficos: matplotlib. Librerías para manejo de datos y estadística: Pandas y StatsModels
+Tipos de datos. Procedimientos. Clases y objetos. Librerías csv, os y datetime, Librerías numéricas y científicas: NumPy, SciPy. Librería de gráficos: matplotlib. Librerías para manejo de datos y estadística: pandas y StatsModels
 
 3. **Análisis estadístico clásico:**
 Técnicas descriptivas simples: Tipos de variaciones, estacionalidad, tendencias, otros tipos de fluctuaciones y ajustes, autocorrelacion, correlograma. Filtrado: diferenciación, detección de bordes, picos. Procesos estocásticos, estacionariedad de primero y segundo orden. Procesos autoregresivos. Ergodicidad. Predicciones: Extrapolaciones
