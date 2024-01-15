@@ -16,14 +16,7 @@ Una manera de observar la estacionariedad de una serie temporal es analizar la d
 
 # Análisis de tendencias
 
-<details>
-  <summary>Asectos generales</summary>
-
-## Aspectos generales
-
-El análisis de tendencias se debe realizar sobre cada una de las componentes de las ST cuando son multivariadas. Si bien no existe una receta para analizar tendencias, existen ciertas técnicas estandarizadas, como el análisis de cambios (derivadas), el análisis a partir del suavizado de curvas utilizando diferentes técnicas, la transformación de variables, el fiteo de curvas, etc.
-
-</details>
+El análisis de tendencias se debe realizar sobre cada una de las componentes de las ST cuando son multivariadas. Si bien no existe una receta para analizar tendencias, existen ciertas técnicas estandarizadas, como el análisis de cambios (derivadas), el análisis a partir del suavizado de curvas utilizando diferentes técnicas, la transformación de variables, el fiteo de curvas, etc. A continuación se presentan algunas de ellas:
 
 <details>
     <summary> Análisis de cambios locales (derivadas) </summary>
@@ -53,6 +46,10 @@ Sm[X(t_i)] = \sum_{r=-q}^{s}a_r\ X(t_{i+r})
 $$
 Si se toma $q=s$ y todos los pesos $a_r=\frac{1}{(2q+1)}$ tenemos la expresión típica de la media móvil en ventanas de ancho $2q+1$. La inspección de la media móvil sobre anchos diferentes puede servir para descartar oscilaciones y su ajuste para extraer la tendencia global, o por tramos. Es importante notar que este tipo de suavizados produce una nueva serie con $N-(2q+1)$ puntos.
 </details>
+
+<details>
+    <summary> Suavizado exponencial (ETS) </summary>
+
 ## Suavizado exponencial (ETS)
 
 Similar a la media móvil, se puede realizar un suavizado, considerando la historia de la serie hacia atrás, de modo tal que los puntos más recientes son más importantes que los previos. El decaimiento de la importancia es de forma exponencial.
@@ -61,6 +58,13 @@ Sm[X(t_i)] = \sum_{j=0}^{\infty}\alpha(1-\alpha)^j X(t_{i-j}),
 $$
 donde $\alpha$ es una constante que satisface: $0<\alpha<1$ y recibe el nombre de constante de suavizado (smooth constant).
 
+Si se considera sólo el primer término de la expansión, este método se denomina _Suavizado exponencial simple_ (**SES**). Si se consideran los dos primeros términos de la serie: _Suavizado exonencial doble_ (**DES**).
+
+</details>
+
+<details>
+    <summary> Ajustes de funciones </summary>
+
 ## Ajustes de funciones
 
 Si se tiene una curva suave a partir de la serie original mediante algún procedimiento como la media móvil, se puede realizar un ajuste de diferentes familias funcionales $f_{\vec{\alpha}}(t)$, con $\vec{\alpha}$ un conjunto de parámetros. Supongamos que $Y$ es la ST que pretendemos ajustar, donde $\hat{y}_i$ son los valores de la serie correspondientes a $Y(t_i)$. Diremos que el ajuste corresponfiente $y_i = f_{\vec{\alpha}}(t_i)$ es el mejor ajuste si el conjunto de parámetros $\vec{\alpha}$ minimiza alguna función de error. Algunas de las funciones de error más utilizadas son:
@@ -68,15 +72,33 @@ Si se tiene una curva suave a partir de la serie original mediante algún proced
 * Error cuadrático medio (___MSE___):
         $$ MSE = \frac{1}{N}\sum_{i=1}^{N}{(\hat{y}_i-y_i)}^2$$
 * Error del valor absoluto medio (___MAE___):
-        $$ MAE = \frac{1}{N}\sum_{i=1}^{N}{\vert\hat{y}_i-y_i\vert}^2$$
+        $$ MAE = \frac{1}{N}\sum_{i=1}^{N}{\vert\hat{y}_i-y_i\vert}$$
 
 Luego existen otras funciones que sirven para estimar dentro de predicciones el error, para ver alguna de ellas, ver el capítulo 4 de la referencia [2].
 
-## Predicciones detendencia
+</details>
 
-Utilizando las herramientas previas, se puede cuantificar la tendencia global de una ST realizando ajustes de las diferentes curvas obtenidas. Dependiendo de los análisis que se realicen las 
+<details>
+    <summary> Predicciones a partir de tendencias </summary>
+
+## Predicciones a partir de tendencias
+
+Utilizando las herramientas previas, se puede cuantificar la tendencia global de una ST realizando ajustes de las diferentes curvas obtenidas. Dependiendo de los análisis que se realicen, los modelos serán diferentes y a partir del conocimiento del problema en sí mismo y la experiencia del analista se podrán aplicar con mayor o menor grado de validez.
+
+La técnica más burda corresponde a la repetición del último valor. Normalmente es llamado modelo **Naïve**. Este modelo puede utilizarse con el valor de la última media móvil, repitiendo este valor. Claramente este modelo tiene memoria de más valores del pasado, denominaremos a este modelo **NaïveMA**.
+
+
+Una de las técnicas usuales de predicción suele seguir los siguientes pasos:
+1. Realizar un suavizado mediante _MA_ para una ventana temporal determinada
+2. Analizar la variación de la pendiente mediante derivadas
+3. Ajustar la tendencia mediante alguna función analítica. 
+4. Utilizar esta función para predecir el punto siguiente en el tiempo
+
 
 </details>
+
+[En este notebook analizamos tendencias](./Tema-3.2-analisis-tendencias.ipynb)
+
 
 
 ## _Bibliografía_
