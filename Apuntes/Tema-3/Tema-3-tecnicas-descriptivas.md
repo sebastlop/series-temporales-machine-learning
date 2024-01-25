@@ -79,9 +79,9 @@ Luego existen otras funciones que sirven para estimar dentro de predicciones el 
 </details>
 
 <details>
-    <summary> Predicciones a partir de tendencias </summary>
+    <summary> Predicciones a partir de tendencias globales </summary>
 
-## Predicciones a partir de tendencias
+## Predicciones a partir de tendencias globales
 
 Utilizando las herramientas previas, se puede cuantificar la tendencia global de una ST realizando ajustes de las diferentes curvas obtenidas. Dependiendo de los análisis que se realicen, los modelos serán diferentes y a partir del conocimiento del problema en sí mismo y la experiencia del analista se podrán aplicar con mayor o menor grado de validez.
 
@@ -94,10 +94,60 @@ Una de las técnicas usuales de predicción suele seguir los siguientes pasos:
 3. Ajustar la tendencia mediante alguna función analítica. 
 4. Utilizar esta función para predecir el punto siguiente en el tiempo
 
-
 </details>
 
+<details>
+    <summary> Predicciones a partir de tendencias locales </summary>
+
+## Predicciones a partir de tendencias locales
+Lo que se realiza usualmente es observar tendencias en ventanas de tiempo, no globales de toda la serie, para esto los análisis previos se realizan  sobre ventanas temporales y se guardan de manera numérica (no analítica) en porciones donde la media permanece constante.
+</details>
+
+
 [En este notebook analizamos tendencias](./Tema-3.2-analisis-tendencias.ipynb)
+
+# Estacionalidad
+
+Una serie puede tener estacionalidad, el análisis de la estacionalidad se puede observar a partir del gráfico de la serie temporal, y también del conocimiento previo de la medición.
+<details>
+    <summary>Gráficos estacionales</summary>
+
+## Gráficos estacionales
+
+Cuando se conoce el intervalo de estacionalidad, la tendencia se puede obtener haciendo un suavizado con ventanas del tamaño igual al periódo de estacionalidad. Luego se utilizan los gráficos estacionales, que consisten en graficar cada período superpuesto.
+
+Una vez caracterizada la estacionalidad, se puede realizar un análisis del comportamiento de la distribución para saber si la estacionalidad se comporta de manera aditiva, o multiplicativa respecto de la tendencia. Si se observa que la desviación estándar no muestra una tendencia clara de crecimiento/decrecimiento en el tiempo se puede pensar que la serie se puede escribir como:
+$$X(t) = m_t + S_t + \varepsilon_t,$$
+donde $m_t$ será la tendencia, $S_t$ será la oscilación estacional y $\varepsilon_t$ un ruido estocástico.
+
+Por el contrario, si existe una tendencia marcada de la desviación estándar, se puede escribir de manera multiplicativa como 
+$$X(t) = m_t S_t + \varepsilon_t, $$ 
+o también 
+$$X(t) = m_t  S_t  \varepsilon_t.$$ 
+Determinar el tipo de descomposición es una tarea ardua y artesanal.
+</details>
+
+
+<details>
+    <summary>Correlaciones y autocorrelación</summary>
+
+## Correlación y Autocorrelación
+
+La correlación entre dos pares de variables $X$ e $Y$ de la misma longitud ($N$) se define como
+
+$$
+r_{xy} = \frac{\sum_{i=1}^N (x_i - \bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^N(x_i-\bar{x})^{2}\sum_{i=1}^N(y_i-\bar{y})^2}}
+$$
+
+Cuando la correlación  mayor, significa que las series son más similares. Si en la expresión de la correlación miramos cómo se correlaciona una serie consigo misma, podemos encontrar estacionalidades de la siguiente manera: tomamos la serie $X(t_1), X(t_2),..., X(t_{N-1})$ y la correlacionamos con la serie desfasada en uno $X(t_2), X(t_3),..., X(t_{N})$, la ecuación anterior se puede escribir
+$$
+r_{1} = \frac{\sum_{i=1}^{N-1} (x_i - \bar{x}_1)(x_{i+1}-\bar{x}_2)}{\sqrt{\sum_{i=1}^{N-1}(x_i-\bar{x}_1)^{2}\sum_{i=1}^{N-1}(x_{i+1}-\bar{x}_2)^2}},
+$$
+donde 
+$$
+\bar{x}_1 = \frac{\sum_{i=1}^{N-1}x_i}{N-1}\ \ y\ \ \bar{x}_2 = \frac{\sum_{i=2}^{N-1}x_i}{N-1}
+$$
+</details>
 
 
 
