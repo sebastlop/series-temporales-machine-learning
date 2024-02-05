@@ -136,20 +136,72 @@ Determinar el tipo de descomposición es una tarea ardua y artesanal.
 La correlación entre dos pares de variables $X$ e $Y$ de la misma longitud ($N$) se define como
 
 $$
-r_{xy} = \frac{\sum_{i=1}^N (x_i - \bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^N(x_i-\bar{x})^{2}\sum_{i=1}^N(y_i-\bar{y})^2}}
+r_{xy} = \frac{\sum_{i=1}^N (x_i - \bar{x})(y_i-\bar{y})}{\sigma_x \sigma_y}
 $$
 
-Cuando la correlación  mayor, significa que las series son más similares. Si en la expresión de la correlación miramos cómo se correlaciona una serie consigo misma, podemos encontrar estacionalidades de la siguiente manera: tomamos la serie $X(t_1), X(t_2),..., X(t_{N-1})$ y la correlacionamos con la serie desfasada en uno $X(t_2), X(t_3),..., X(t_{N})$, la ecuación anterior se puede escribir
+Donde $\sigma_{x,y}$ es la desviación estándar de cada una de la series. Cuando la correlación es mayor, significa que las series son más similares. Si en la expresión anterior miramos cómo se correlaciona una serie consigo misma desplazada, podemos encontrar estacionalidades de la siguiente manera: tomamos la serie $X(t_1), X(t_2),..., X(t_{N-1})$ y la correlacionamos con la serie desfasada en uno $X(t_2), X(t_3),..., X(t_{N})$, la ecuación anterior se puede escribir
 $$
-r_{1} = \frac{\sum_{i=1}^{N-1} (x_i - \bar{x}_1)(x_{i+1}-\bar{x}_2)}{\sqrt{\sum_{i=1}^{N-1}(x_i-\bar{x}_1)^{2}\sum_{i=1}^{N-1}(x_{i+1}-\bar{x}_2)^2}},
+r_{1} = \frac{\sum_{i=1}^{N-1} (x_i - \bar{x}_1)(x_{i+1}-\bar{x}_2)}{\sigma_x \sigma_{x_{i+1}}},
 $$
 donde 
 $$
 \bar{x}_1 = \frac{\sum_{i=1}^{N-1}x_i}{N-1}\ \ y\ \ \bar{x}_2 = \frac{\sum_{i=2}^{N-1}x_i}{N-1}
 $$
+
 </details>
 
 
+[En este notebook analizamos la estacionalidad](./Tema-3.3-analisis-estacionalidad.ipynb)
+
+# Filtrado de señales
+
+El filtrado es un conjunto de técnicas que sirven para resaltar o esconder ciertas características de las series, como la detección de saltos, picos, o estructuras particulares.
+
+Existen muchos tipos de transformaciones que suelen aplicarse, siendo el análisis de señales mediante filtros un curso en sí mismo. Dado que no es el objeto de este curso ahondar en estas técnicas, describiremos aquí algunos basados en una operación matemática denominada __*convolución*__. La convolución entre dos funciones continuas $f$ y $g$ de una sola variable se escribe como
+$$
+(f \star g)(\tau) = \int_{-\infty}^{\infty}f(t)g(t-\tau) dt,
+$$
+que puede interpretarse como la aplicación de una plantilla $g(t)$ sobre una función $f(t)$ desplazada en una cantidad $\tau$. Se puede observar cierta analogía con las correlaciones y la media móvil.
+
+Si por el contrario, se tienen dos series discretas $X(t_i)$ y $Y(t_i)$, la convolución discreta se escribe como
+
+$$
+(X \star Y)(\tau_j) = \sum_{i = 1}^{N_X}X(t_i)Y(t_i-\tau_j),
+$$
+donde $N_X$ es el número de muestras de la serie X, y el resultado $(X \star Y)(\tau_j)$ tendrá $N_X - N_Y$ puntos. Es usual encontrarse un aumentado de puntos para obtener la misma cantidad de puntos que la serie inicial. Esto se suele hacer agregando $N_Y/2$ valores al comienzo de $X$ y $N_Y/2$ ó $N_Y/2+1$ al final dependiendo de si el número de puntos $N_Y$ es par o impar respectivamente. Los valores que se agregan pueden ser constantes, o correspondientes a alguna extrapolación, o los valores del final de la serie X, para hacer la convolución circular.
+
+
+<details>
+    <summary>Casos de interés</summary>
+
+## Casos de interés
+
+### Covarianza
+    
+La covarianza entre dos series temporales de igual longitud se escribe: 
+$$
+    Cov(X,Y) = \frac{1}{N}\sum_{i=1}^N{(x_i-\bar{x})(y_i-\bar{y})}
+$$ 
+Si hacemos las transformaciones $\tilde{X} = X-\bar{x}$ y $\tilde{Y} =Y-\bar{y}$ se observa simplemente que la covarianza se puede calcular  
+$$
+    Cov(X,Y) = \frac{(\tilde{Y} \star \tilde{X})}{N_X}(\tau_0)
+$$
+
+### Correlación
+De manera análoga a la covarianza, la correlación se puede calcular de manera inmediata realizando las siguientes transformaciones:
+$$
+    \tilde{X} = \frac{X-\bar{x}}{\sigma_x} , \ \  \ \tilde{Y} =\frac{Y-\bar{y}}{\sigma_y}
+$$
+La correlación se reduce a la convolución entre las nuevas series $(\tilde{Y} \star \tilde{X})(\tau_0)$
+
+### Derivada centrada
+
+### Suavizado Gaussiano
+
+### Derivada Gaussiana
+
+
+</details>
 
 ## _Bibliografía_
 [1] Chatfield, Chris. The Analysis of Time Series: An Introduction, Sixth Edition. Reino Unido: CRC Press, 2003.
