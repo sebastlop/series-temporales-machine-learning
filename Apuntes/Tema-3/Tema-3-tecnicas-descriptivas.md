@@ -196,12 +196,30 @@ La correlación se reduce a la convolución entre las nuevas series $(\tilde{Y} 
 
 ### Derivada centrada
 
+La derivada por diferencias finitas se puede obtener tomando simplemente como plantilla $(Y)$ el siguiente vector:
+$$
+Y = (1,0,-1)/\Delta t
+$$
+
 ### Suavizado Gaussiano
+Si se considera una plantilla en una ventana de tiempo con una distribución Gaussiana, se puede realizar un suavizado de la señal. En este caso:
+$$
+Y = \frac{1}{\sqrt{2\pi} \sigma }e^{-\frac{(t-\mu)^2}{2\sigma^2}}
+$$
 
 ### Derivada Gaussiana
 
+El caso de la derivada gaussiana se corresponde con la derivada de una señal suavizada mediante un filtro gaussiano. Este proceso es equivalente a tomar como ventana
+
+$$
+Y = -\frac{(t-\mu)}{\sigma^2} \frac{1}{\sqrt{2\pi } }e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+$$
 
 </details>
+
+[En este notebook analizamos las convoluciones](./Tema-3.4-convoluciones.ipynb)
+
+
 
 ## _Bibliografía_
 [1] Chatfield, Chris. The Analysis of Time Series: An Introduction, Sixth Edition. Reino Unido: CRC Press, 2003.
