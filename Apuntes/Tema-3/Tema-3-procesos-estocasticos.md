@@ -57,8 +57,56 @@ Si $X(t=0) = 0$, se puede ver que $X(t_1) = Z(t_1)$, y en el _n-ésimo_ paso $X(
 
 ## Procesos de media móvil
 
+Suponiendo que $Z(t)$ es un proceso completamente aleatorio con media nula y varianza $\sigma_Z^2$, entonces se dice que $X$ es una distribución de media móvil de orden $q$ si 
+$$
+X(t_i) = \beta_0 Z(t_i) + \beta_1 Z(t_{i-1}) + ... + \beta_q Z(t_{i-q}),
+$$
 
+donde $\beta_i$ son constantes. Se suele abreviar a estos tipos de procesos como $MA(q)$. Además, estos procesos tienen media nula, $E[X(t)] = 0$ y varianza $Var[X(t)] = \sigma_Z^2\sum_{i=0}^q {\beta_i ^2}$.
 
+Para el caso $MA(1)$, si $\beta_0 = 1$ 
+
+$$
+Var[X(t)] = \sigma_Z^2(1+\beta_1^2)
+$$
+y
+$$
+\begin{align}
+ & & 1 &\ si\ \  k > 1 \nonumber \\
+\gamma(k) &=& Cov[X(t_i), X(t_{i+k})] = \sigma_Z^2 \beta_1/(1+\beta_1^2) &\ si \ \ \ \ k=\pm 1 \nonumber \\ 
+&&\gamma(-k) &\ si \ \ k < 1 \nonumber
+\end{align}
+$$
+y la correlación:
+$$
+\begin{align}
+&& 1 &\ si \ \ k = 0 \nonumber\\
+\rho(k) &=& \beta_1/(1+\beta_1^2)& \ si \ \ k=\pm 1 \nonumber\\
+&& 0 &\ \ \ \ \ \ \ \ \ c.o.c. \nonumber
+\end{align}
+$$
+
+## Procesos autoregresivos
+
+Suponiendo que $Z(t)$ es un proceso completamente aleatorio con media nula y varianza $\sigma_Z^2$, entonces se dice que $X$ es un proceso autoregresivo de orden $p$, denotado como $AR(p)$, si:
+$$
+X(t_i) = \alpha_1 X(t_{i-1}) + \alpha_2 X(t_{i-2}) + ... + \alpha_p X(t_{i-p}) + Z(t_{i}).
+$$
+
+### Procesos de primer orden (Markovianos)
+
+Procesos que dependen del instante previo $AR(1)$:
+$$
+X(t_i) = \alpha X(t_{i-1}) + Z(t_{i})
+$$
+
+Para este tipo de procesos la media es $E[X(t)] = 0$ y la varianza $Var[X(t)]=\sigma_Z^2(1+\alpha^2+\alpha^4 +...)$. Claramente la varianza converge si $|\alpha|<1$, en cuyo caso
+ 
+$$
+Var[X(t)]=\sigma_X^2 = \sigma_Z^2/(1-\alpha^2)
+$$
+
+En este mismo caso la Covarianza es $\gamma(k) = \alpha^k\sigma_X^2$ y la correlación $\rho(k) = \alpha^k$
 ## _Bibliografía_
 [1] Chatfield, Chris. The Analysis of Time Series: An Introduction, Sixth Edition. Reino Unido: CRC Press, 2003.
 
