@@ -55,7 +55,7 @@ $$
 
 Si $X(t=0) = 0$, se puede ver que $X(t_1) = Z(t_1)$, y en el _n-ésimo_ paso $X(t_n) = \sum_{i=1}^n{Z(t_i)}$. Este proceso no es estacionario, ya que $E[X]=t\mu_Z$ y $Var[X]=t \sigma_Z^2$.
 
-## Procesos de media móvil
+## Procesos de media móvil (MA)
 
 Suponiendo que $Z(t)$ es un proceso completamente aleatorio con media nula y varianza $\sigma_Z^2$, entonces se dice que $X$ es una distribución de media móvil de orden $q$ si 
 $$
@@ -86,7 +86,7 @@ $$
 \end{align}
 $$
 
-## Procesos autoregresivos
+## Procesos autoregresivos (AR)
 
 Suponiendo que $Z(t)$ es un proceso completamente aleatorio con media nula y varianza $\sigma_Z^2$, entonces se dice que $X$ es un proceso autoregresivo de orden $p$, denotado como $AR(p)$, si:
 $$
@@ -107,6 +107,12 @@ Var[X(t)]=\sigma_X^2 = \sigma_Z^2/(1-\alpha^2)
 $$
 
 En este mismo caso la Covarianza es $\gamma(k) = \alpha^k\sigma_X^2$ y la correlación $\rho(k) = \alpha^k$
+
+## Procesos mixtos autoregresivos y de media móvil (ARMA)
+
+### Procesos integrados (ARIMA)
+
+
 ## _Bibliografía_
 [1] Chatfield, Chris. The Analysis of Time Series: An Introduction, Sixth Edition. Reino Unido: CRC Press, 2003.
 
