@@ -2,13 +2,30 @@
 
 Cuando se tiene un proceso estocástico estacionario (ya sea naturalmente, o el resultado de haber extraído la tendencia), resulta de especial interés comprender si existen _estacionalidades_ o componentes oscilatorias marcadas. Para ello la Transformada de Fourier es la herramienta adecuada. Si bien la transformada de Fourier está formulada para funciones continuas, existe una interpretación para funciones discretas. En éste caso se denomina Transformada Discreta de Fourier (DFT), y para la cual existe un algoritmo especial denominada Transformada Rápida de Fourier (FFT). A lo largo de este tema estudiaremos algunas definiciones y utilidades de este tipo de transformaciones y su posterior análisis. En este curso utilizaremos números complejos.  
 
-Sea $z = a + ib$ un número complejo, donde la parte real es $a$ y la función que tiene como imágen esta componente es: $Re(z)=a$. De igual manera la parte imaginaria es $b$ y se obtiene como $Im(z)=b$. Es importante recordar la notación de Euler para los números complejos
+Sea $z = a + ib$ un número complejo, donde la parte real es $a$ y la función que tiene como imagen esta componente es: $Re(z)=a$. De igual manera la parte imaginaria es $b$ y se obtiene como $Im(z)=b$. Para el desarrollo de este curso utilizaremos la notación de Euler para los números complejos
 
 $$
 z = Re^{i\theta} = R [\cos{(\theta)}+i\sin{(\theta)}],
 $$
-con $R = \sqrt{a^2 + b^2}$ y $\theta = \arctan(b/a)$
+con $R = \sqrt{a^2 + b^2}$ y $\theta = \arg{(z)} = \arctan(b/a)$. Esta notación es sumamente compacta y útil para desarrollar estos temas.
 
+
+## La Serie de Fourier
+
+Una función continua y periódica $f(t)$ en el intervalo $[-\tau/2,\tau/2]$ puede aproximarse como 
+$$
+\begin{align}
+f(t)\approx \frac{a_0}{2} + \sum_{n=1}^{\infty}{a_n e^{i\frac{2n\pi t}{\tau}}}
+\end{align}
+$$
+
+donde los coeficientes se obtienen como 
+
+$$
+\begin{align}
+a_n = \int_{-\tau/2}^{\tau/2} {f(t) e^{-i\frac{2n\pi t}{\tau}} dt}
+\end{align}
+$$
 
 ## Transformada de Fourier
 La transformada de Fourier de una función continua $f(t)$ se define como
