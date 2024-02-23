@@ -157,7 +157,7 @@ $$
 
 El filtrado es un conjunto de técnicas que sirven para resaltar o esconder ciertas características de las series, como la detección de saltos, picos, o estructuras particulares.
 
-Existen muchos tipos de transformaciones que suelen aplicarse, siendo el análisis de señales mediante filtros un curso en sí mismo. Dado que no es el objeto de este curso ahondar en estas técnicas, describiremos aquí algunos basados en una operación matemática denominada __*convolución*__. La convolución entre dos funciones continuas $f$ y $g$ de una sola variable se escribe como
+Existen muchos tipos de transformaciones que suelen aplicarse, siendo el análisis de señales mediante filtros un curso en sí mismo. Dado que no es el objeto de este curso ahondar en estas técnicas, describiremos aquí algunos basados en dos operaciones matemáticas denominada __*convolución*__ y __*correlación*__. La convolución entre dos funciones continuas $f$ y $g$ de una sola variable se escribe como
 $$
 (f \star g)(\tau) = \int_{-\infty}^{\infty}f(t)g(t-\tau) dt,
 $$
@@ -170,6 +170,18 @@ $$
 $$
 donde $N_X$ es el número de muestras de la serie X, y el resultado $(X \star Y)(\tau_j)$ tendrá $N_X - N_Y$ puntos. Es usual encontrarse un aumentado de puntos para obtener la misma cantidad de puntos que la serie inicial. Esto se suele hacer agregando $N_Y/2$ valores al comienzo de $X$ y $N_Y/2$ ó $N_Y/2+1$ al final dependiendo de si el número de puntos $N_Y$ es par o impar respectivamente. Los valores que se agregan pueden ser constantes, o correspondientes a alguna extrapolación, o los valores del final de la serie X, para hacer la convolución circular.
 
+Por otra parte la correlación se escribe
+$$
+(f \circ g)(\tau) = \int_{-\infty}^{\infty}f(t+\tau)g(t) dt,
+$$
+
+y la versión discreta
+
+$$
+(X \circ Y)(\tau_j) = \sum_{i = 1}^{N_X}X(t_i+\tau_j)Y(t_i).
+$$
+
+Esta función calcula la similitud entre dos señales, y cuando el número de datos es infinito, concuerda con la estimación provista en el apartado previo. Se puede ver que a partir de dos transformaciones sucesivas de inversiones la correlación se puede obtener a partir de la convolución
 
 <details>
     <summary>Casos de interés</summary>
@@ -184,7 +196,7 @@ $$
 $$ 
 Si hacemos las transformaciones $\tilde{X} = X-\bar{x}$ y $\tilde{Y} =Y-\bar{y}$ se observa simplemente que la covarianza se puede calcular  
 $$
-    Cov(X,Y) = \frac{(\tilde{Y} \star \tilde{X})}{N_X}(\tau_0)
+    Cov(X,Y) = (\tilde{Y} \circ \tilde{X})(\tau_0)
 $$
 
 ### Correlación
@@ -192,7 +204,7 @@ De manera análoga a la covarianza, la correlación se puede calcular de manera 
 $$
     \tilde{X} = \frac{X-\bar{x}}{\sigma_x} , \ \  \ \tilde{Y} =\frac{Y-\bar{y}}{\sigma_y}
 $$
-La correlación se reduce a la convolución entre las nuevas series $(\tilde{Y} \star \tilde{X})(\tau_0)$
+y utilizando la definición de correlación previa.
 
 ### Derivada centrada
 
