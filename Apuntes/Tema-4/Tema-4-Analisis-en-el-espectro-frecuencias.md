@@ -38,10 +38,35 @@ $$
 
 Con las definiciones anteriores se puede ver que $\mathcal{F}$ es una función compleja, pero cuyas componentes pueden obtenerse en términos de integrales en el dominio real.
 
-Como las series temporales que se utilizan en este curso, son esencialmente discretas, describiremos la DFT. Sea nuestra serie $X(t_i)$ con $N$ elementos enumerados desde cero, es decir $\{0,1,..,N-1\}$. La DFT se escribe como
+## Transformada discreta de Fourier (DFT)
+
+Como las series temporales que se utilizan en este curso, son esencialmente discretas, describiremos la DFT. Sea nuestra serie $X(t_n)$ con $N$ elementos enumerados desde cero, es decir $\{0,1,..,N-1\}$. La DFT se escribe como
 
 $$
-\tilde{X}(\omega_j) = \frac{1}{\sqrt{2\pi N}}\sum_{i = 0}^{N}e^{-i\omega_j t_i}X(t_i),\ \ \ j = \{0,1,2,....,N-1\}
+\tilde{X}(f_j) = \frac{1}{\sqrt{N}}\sum_{n = 0}^{N-1}e^{-i \frac{2 \pi\ j\ n}{N}}X(t_n),\ \ \ j = \{0,1,2,....,N-1\}
 $$
 
-donde las frecuencias quedan determinadas por el número total de elementos:  $\omega_j = i/N$
+Se puede ver que no se necesita el espaciado temporal para calcular la DFT, por ello, resulta imprescindible poder relacionar el dominio temporal y el de frecuencias.
+Si contamos con una discretización temporal dada por $\Delta t$, las frecuencias $f_j$ quedan determinadas por el número total de elementos y el espaciado temporal de la siguiente manera:  
+$$\Delta f = \frac{1}{N\Delta t} $$
+y las frecuencias estarán dadas en el intervalo: 
+$$
+\begin{align}
+\left[-\frac{N}{2} , \frac{N}{2}-1 \right] \Delta f &   & si \ N \ par\\
+\left[-\frac{N-1}{2} , \frac{N-1}{2} \right] \Delta f & & si \ N \ impar
+\end{align}
+$$
+
+
+El algoritmo más importante para calcular es la transformada rápida de Fourier (FFT).
+
+## Espectro de potencia
+
+El espectro de potencia (o densidad espectral) muestra cuáles son las frecuencias más importantes de una serie temporal. El espectro de frecuencia está dado por el módulo cuadrado de la función transformada de Fourier
+
+Cuando las series temporales son muy largas o densas, o cuando no son sampleadas en intervalos regulares, el cómputo de la DFT se torna computacionalmente costoso en el primer caso, o incierta su interpretación en el segundo, por lo que se recurre a diferentes estimadores del espectro de frecuencias. Entre los diferentes estimadores que se pueden utilizar, el más importante es el cálculo del periodograma, de igual modo se suelen utilizar ajustes por cuadrados mínimos de señales reconstruidas. Estos tópicos implican diversos. Dado que no es el objeto de este curso entrar en sumo detalle de las diversas técnicas, en caso de ser necesaria una mayor profundización, se puede encontrar una lista de algunas técnicas de estimación en este [link](https://en.wikipedia.org/wiki/Spectral_density_estimation#Periodogram).
+
+## Espectrogramas
+
+Existe una herramienta muy utilizada para analizar series temporales, que es intentar realizar un análisis combinado en el dominio temporal conjuntamente con el espectro de frecuencias. Si bien ambos dominios son complementarios, y por lo tanto es imposible conseguir una función de ambas variables, lo que se suele hacer para una serie temporal es observar el espectro de frecuencias posibles en diferentes segmentos de tiempo. Esto se puede realizar de una gran cantidad de maneras, fundamentalmente basadas en la manera en que se toman las ventanas de tiempo.
+La más común y que utilizaremos en este curso es la _Windowed Fourier Transform_ donde en cada ventana temporal se realiza la DFT.
