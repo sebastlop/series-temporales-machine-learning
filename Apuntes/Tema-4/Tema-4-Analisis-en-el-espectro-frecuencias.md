@@ -70,3 +70,6 @@ Cuando las series temporales son muy largas o densas, o cuando no son sampleadas
 
 Existe una herramienta muy utilizada para analizar series temporales, que es intentar realizar un análisis combinado en el dominio temporal conjuntamente con el espectro de frecuencias. Si bien ambos dominios son complementarios, y por lo tanto es imposible conseguir una función de ambas variables, lo que se suele hacer para una serie temporal es observar el espectro de frecuencias posibles en diferentes segmentos de tiempo. Esto se puede realizar de una gran cantidad de maneras, fundamentalmente basadas en la manera en que se toman las ventanas de tiempo.
 La más común y que utilizaremos en este curso es la _Windowed Fourier Transform_ donde en cada ventana temporal se realiza la DFT.
+
+
+La librería scipy trae una implementación muy buena ([spectrogram](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.spectrogram.html))
