@@ -26,7 +26,7 @@ $$
 \mathcal{L} &= \frac{1}{N}\sum_{i=1}^{N}{(\hat{y}_i - y_i)^2},
 \end{align}
 $$
-donde $N$ es el conjunto de datos, y $y_i$ es el valor que arroja el modelo para el valor de entrada $x_i$. Ahora bien, cómo se puede utilizar esta función para determinar los valores de los parámetros $a$ y $b$?. Eso se puede hacer de manera simple. Minimizando $\mathcal{L}$ respecto de los parámetros precisamente. Es decir, encontrando los valores tal que
+donde $N$ es el conjunto de datos, y $y_i$ es el valor que arroja el modelo para el valor de entrada $x_i$. Ahora bien, cómo se puede utilizar esta función para determinar los valores óptimos de los parámetros $a$ y $b$?. Eso se puede hacer de manera simple. Minimizando $\mathcal{L}$ respecto de los parámetros precisamente. Es decir, encontrando los valores tal que
 
 $$
 \begin{align}
@@ -48,7 +48,18 @@ Con lo que se encuentran los parámetros óptimos. En este punto es importante n
 
 ## Descenso por gradiente y tasa de aprendizaje
 
-El algoritmo de descenso por gradiente propone descender hacia el mínimo de la función de pérdida dando pasos, en la dirección opuesta al gradiente (ya que el gradiente señala la dirección de mayor crecimiento de la función objetivo)
+El algoritmo de descenso por gradiente propone descender hacia el mínimo de la función de pérdida dando pasos, en la dirección opuesta al gradiente (ya que el gradiente señala la dirección de mayor crecimiento de la función objetivo). Supongamos que partimos con valores al azar de los parámetros. El algoritmo para encontrar un mínimo (relativo) consiste en realizar hasta alcanzar un criterio de convergencia la siguiente transformación de manera iterativa:
+
+$$
+\begin{align}
+a' &\rightarrow  a- \alpha \frac{\partial\mathcal{L}}{\partial a}\\
+b' &\rightarrow  b- \alpha \frac{\partial\mathcal{L}}{\partial b},
+\end{align}
+$$
+donde $\alpha$ es un parámetro denominado tasa de aprendizaje (learning rate o lr) y es positivo. 
+
+
+
 
 
 Supongamos que tenemos una serie temporal (ST) $X[t_i]$, y queremos observar si tiene una tendencia lineal, para ello se puede 
