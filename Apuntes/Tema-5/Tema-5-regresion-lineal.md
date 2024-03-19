@@ -66,23 +66,23 @@ Estos aspectos se pueden observar en [esta notebook](./Tema-5-machine-learning-l
 
 ## Regresión Logística y clasificación
 
-La regresión logística se utiliza para clasificar datos, en este caso particular veremos clasificación binaria, es decir dos clases de datos. Los datos que pueden ser clasificados en una cantidad discreta de grupos se denominan categóricas. Por ejemplo separar fotos de gatos y perros, o determinar si un email es spam o no, etc. Lo importante para que este tipo de regresión funcione es que para la variable que el dominio de las variables que se clasifican posea una frontera entre una y otra clase. La regresión logística se usa desde los albores del siglo XX en el campo de la biología, y ha resultado útil para muchos problemas de diversas áreas.
+La regresión logística se usa desde los albores del siglo XX en el campo de la biología, y ha resultado útil para muchos problemas de diversas áreas. En general se utiliza para clasificar datos, en este caso particular veremos clasificación binaria, es decir dos clases de datos. Las variables que pueden ser clasificados en una cantidad discreta de grupos se denominan categóricas. Por ejemplo separar fotos de gatos y perros, o determinar si un email es spam o no, etc. Lo importante para que este tipo de regresión funcione, es que el dominio de las variables que se clasifican posea una frontera entre una y otra clase. 
 
-> Para clarificar pongamos un ejemplo simple. Supongamos que queremos clasificar fotografías como oscuras y claras, para ello utilizamos alguna digitalización en un bit (blanco y negro), sobre la cual tomamos el promedio de los valores de los pixeles, si el promedio es mayor o igual que 0.5, la imagen es clara, si es menor a 0.5 es oscura. 
+> Para clarificar pongamos un ejemplo simple. Supongamos que queremos clasificar fotografías como oscuras y claras, para ello utilizamos alguna digitalización en un bit (blanco y negro), sobre la cual tomamos el promedio sobre todos los valores de los pixeles, si el promedio es mayor o igual que 0.5, la imagen es clara, si es menor a 0.5 es oscura. 
 
 En este ejemplo la variable $x$ (feature) que disponemos es el valor del promedio de bits. Claramente hay un valor de frontera que es 0.5, que separa la categoría clara de oscura.
 
 El problema puede ser mucho más complejo e involucrar muchas variables. Dado que es un problema de aprendizaje supervisado, se debe tener un conjunto de entrenamiento etiquetado para cada una de las categorías.
 
-El modelo de la regresión logistica consiste en aplicar una función sigmoide
+El modelo de la regresión logística consiste en aplicar una función sigmoide
 $$
 \begin{align}
 y &= f(z) = \frac{1}{1+e^{-z}}
 \end{align}
 $$
-donde $z=a x + b$, en este caso cuanto mayor es $a$ más parecida a una función escalón será $f$, mientras que $b$ desplaza el centro de simetría sobre el eje $x$.
+donde $z=a x + b$, en este caso cuanto mayor es $a$ más parecida a una función escalón será $f$, mientras que $b$ desplaza el centro de simetría sobre el eje $x$ una cantidad $-b/a$.
 
-Para tener una función de pérdida monótona en este tipo de problemas, no se puede utilizar los errores vistos previamente, y conviene definir a la función de pérdida de la siguiente manera
+Para tener una función de pérdida monótona en este tipo de problemas, no se pueden utilizar los errores vistos previamente (MSE y MAE), y conviene definir a la función de pérdida de la siguiente manera
 $$
 \begin{align}
 \mathcal{L}(y,\hat{y}) &= -\hat{y} \log{[f(ax+b)]}-(1-\hat{y})\log{[1-f(ax+b)]}
@@ -96,6 +96,13 @@ $$
 \frac{\partial\mathcal{L}}{\partial b} &= \frac{1}{N}\sum_{i=1}^{N}{f(a x_i + b)\hat{y}_i },\end{align}
 $$
 y las Ecuaciones (7) y (8) se pueden aplicar.
+
+Cuando se tiene más de una variable, el problema es similar, suponiendo que se tiene una frontera definida entre las diferentes categorías. El modelo que se propone es
+$$
+y = f(a_1 x_1 + a_2 x_2 +...+b),
+$$
+donde $f$ es una función sigmoide como la de la Ecuación (9).
+
 
 Para comprender este problema es importante ver [este notebook](./Tema-5-regresion-logistica.ipynb)
 
