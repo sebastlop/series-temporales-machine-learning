@@ -97,12 +97,26 @@ $$
 $$
 y las Ecuaciones (7) y (8) se pueden aplicar.
 
+### Muchas variables
+
 Cuando se tiene más de una variable, el problema es similar, suponiendo que se tiene una frontera definida entre las diferentes categorías. El modelo que se propone es
 $$
 y = f(a_1 x_1 + a_2 x_2 +...+b),
 $$
 donde $f$ es una función sigmoide como la de la Ecuación (9).
 
+Tanto por notación como por la practicidad inherente, resulta importante escribir el problema de la siguiente manera:
+
+$$
+y = f(\vec{w}^T\cdot \vec{x}),
+$$
+donde $\vec{w} = (b, a_1,...,a_n)$ y $x=(1, x_1, ... , x_n)$. El gradiente se obtiene a partir de la regla de la cadena de manera sencilla
+
+$$
+\begin{align}
+\frac{\partial\mathcal{L}}{\partial w_i} &= \frac{1}{N}\sum_{i=1}^{N}{[f(\vec{w}^T\cdot \vec{x})-\hat{y}_i ]}x_i
+\end{align}
+$$
 
 Para comprender este problema es importante ver [este notebook](./Tema-5-regresion-logistica.ipynb)
 
