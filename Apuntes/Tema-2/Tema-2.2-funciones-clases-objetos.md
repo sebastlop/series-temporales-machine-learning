@@ -30,6 +30,8 @@ Los argumentos pueden ser de 3 tipos diferentes:
 *   argumentos posicionales: importa el orden en que son definidos y luego provistos
 *   argumentos por palabras claves: no importa el orden, y su número puede ser desconocido. Normalmente se los denomina como _*args_ y _**kwargs_
 
+[En este notebook hay algunos ejemplos](./2.2-funciones-clases-objetos.ipynb)
+
 ## Clases y Objetos
 
 Las clases y objetos son el alma de la programación en Python, dado que todo es un objeto en Python. Naturalmente el paradigma de programación que se sigue en Python suele ser el paradigma orientado a objetos (POO) aunque no es el único posible, dada la flexibilidad que presenta este lenguaje.
