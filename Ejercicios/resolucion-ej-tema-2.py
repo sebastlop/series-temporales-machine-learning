@@ -29,9 +29,15 @@ class procesador:
         assert type(col) == int, 'ojo amigue, col es int'
         return interp1d(self.tiempo, self.acels[:, col],kind='linear')
 
-    def fit_params(self):
-        pass
-
+    def fit_params(self, col, pp):
+        return curve_fit(self.func_fit,
+                  self.tiempo, 
+                  self.acels[:,col], 
+                  p0 = pp)[0]
+    
+    def func_fit(self, x, a, b, w, fi):
+        return a * np.sin(w*x+fi) + b
+    
 if __name__ == '__main__':
     filename = os.path.join('..','Data', 
                             'acelerometro','oscilador.csv')
@@ -39,10 +45,13 @@ if __name__ == '__main__':
     print(arch1.acels[:2])
     arch2 = procesador(os.path.join('..','Data', 
                             'acelerometro','caminata-ejemplo.csv'))
-    
-    plt.plot(np.linspace(1e-2,20e-2,1000),
-              arch2.interpolacion(0)(np.linspace(1e-2,20e-2,1000)), 'o')
-    plt.plot(np.linspace(1e-2,20e-2,1000),
-              arch2.interpolacion(1)(np.linspace(1e-2,20e-2,1000)), 'x')
+    columna = 0
+    opt_val = arch2.fit_params(columna, [1,1,5,1])
+    print(f'los valores optimos son: {opt_val}')
+    print(f'el periodo correspondiente: {opt_val[2]/2/np.pi}')
+    plt.xlabel('tiempo ', fontsize = 24)
+    plt.xticks(fontsize = 18)
+    plt.plot(arch2.tiempo, arch2.acels[:,columna])
+    plt.plot(arch2.tiempo, arch2.func_fit(arch2.tiempo, *opt_val))
     plt.show()
  
