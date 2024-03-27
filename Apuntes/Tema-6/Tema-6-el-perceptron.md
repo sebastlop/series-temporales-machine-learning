@@ -24,6 +24,8 @@ Si se observa detenidamente, cuando la función de activación es $y=x$, es deci
 
 Por otra parte, se pueden adoptar todo tipo de funciones de activación, en particular suelen ser muy útiles las funciones sigmoides para problemas diversos, pero fundamentalmente para problemas de clasificación.
 
+[En este link se pueden encontrar las funciones de activación implementadas en PyTorch](https://pytorch.org/docs/stable/nn.html)
+
 
 ## El perceptron multicapa
 
@@ -45,3 +47,5 @@ y = g(\mathbf{w'}\cdot\mathbf{y'}) =g(\mathbf{w'}\cdot\mathbf{h}(\mathbf{w}\cdot
 $$
 
 Donde la coposición de funciones es evidente y la derivada de $y$ respecto de las variables de entrada se pueden hallar mediante la regla de la cadena como ya se ha dicho.
+
+## La función de pérdida
