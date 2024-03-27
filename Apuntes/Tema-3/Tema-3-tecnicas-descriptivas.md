@@ -41,9 +41,11 @@ Cualquiera de los tres casos previos es útil para el análisis de tendencias. U
 ## Suavizado: Media Móvil (MA)
 
 La media móvil, cuando es simétrica permite eliminar oscilaciones alrededor de la media. Si bien existen tratados sumamente exhaustivos, en este curso veremos la más simple de todas. La media móvil es una transformación que lleva nuestra distribución $X(t)$ en $Y(t)$. La expresión general de este tipo de transformaciones que llamaremos $Sm$ (por smooth):
+
 $$
 Sm[X(t_i)] = \sum_{r=-q}^{s}a_r\ X(t_{i+r})
 $$
+
 Si se toma $q=s$ y todos los pesos $a_r=\frac{1}{(2q+1)}$ tenemos la expresión típica de la media móvil en ventanas de ancho $2q+1$. La inspección de la media móvil sobre anchos diferentes puede servir para descartar oscilaciones y su ajuste para extraer la tendencia global, o por tramos. Es importante notar que este tipo de suavizados produce una nueva serie con $N-(2q+1)$ puntos.
 </details>
 
@@ -53,9 +55,11 @@ Si se toma $q=s$ y todos los pesos $a_r=\frac{1}{(2q+1)}$ tenemos la expresión 
 ## Suavizado exponencial (ETS)
 
 Similar a la media móvil, se puede realizar un suavizado, considerando la historia de la serie hacia atrás, de modo tal que los puntos más recientes son más importantes que los previos. El decaimiento de la importancia es de forma exponencial.
+
 $$
 Sm[X(t_i)] = \sum_{j=0}^{\infty}\alpha(1-\alpha)^j X(t_{i-j}),
 $$
+
 donde $\alpha$ es una constante que satisface: $0<\alpha<1$ y recibe el nombre de constante de suavizado (smooth constant).
 
 Si se considera sólo el primer término de la expansión, este método se denomina _Suavizado exponencial simple_ (**SES**). Si se consideran los dos primeros términos de la serie: _Suavizado exonencial doble_ (**DES**).
@@ -121,9 +125,17 @@ $$X(t) = m_t + S_t + \varepsilon_t,$$
 donde $m_t$ será la tendencia, $S_t$ será la oscilación estacional y $\varepsilon_t$ un ruido estocástico.
 
 Por el contrario, si existe una tendencia marcada de la desviación estándar, se puede escribir de manera multiplicativa como 
-$$X(t) = m_t S_t + \varepsilon_t, $$ 
+
+$$
+X(t) = m_t S_t + \varepsilon_t, 
+$$ 
+
 o también 
-$$X(t) = m_t  S_t  \varepsilon_t.$$ 
+
+$$
+X(t) = m_t  S_t  \varepsilon_t.
+$$
+
 Determinar el tipo de descomposición es una tarea ardua y artesanal.
 </details>
 
@@ -139,11 +151,15 @@ $$
 r_{xy} = \frac{\sum_{i=1}^N (x_i - \bar{x})(y_i-\bar{y})}{\sigma_x \sigma_y}
 $$
 
-Donde $\sigma_{x,y}$ es la desviación estándar de cada una de la series. Cuando la correlación es mayor, significa que las series son más similares. Si en la expresión anterior miramos cómo se correlaciona una serie consigo misma desplazada, podemos encontrar estacionalidades de la siguiente manera: tomamos la serie $X(t_1), X(t_2),..., X(t_{N-1})$ y la correlacionamos con la serie desfasada en uno $X(t_2), X(t_3),..., X(t_{N})$, la ecuación anterior se puede escribir
+Donde $\sigma_{x,y}$ es la desviación estándar de cada una de la series. Cuando la correlación es mayor, significa que las series son más similares. Si en la expresión anterior miramos cómo se correlaciona una serie consigo misma desplazada, podemos encontrar estacionalidades de la siguiente manera: tomamos la serie $X(t_1), X(t_2),..., X(t_{N-1})$ y la correlacionamos con la serie desfasada 
+en uno $X(t_2), X(t_3),..., X(t_{N})$, la ecuación anterior se puede escribir
+
 $$
 r_{1} = \frac{\sum_{i=1}^{N-1} (x_i - \bar{x}_1)(x_{i+1}-\bar{x}_2)}{\sigma_x \sigma_{x_{i+1}}},
 $$
+
 donde 
+
 $$
 \bar{x}_1 = \frac{\sum_{i=1}^{N-1}x_i}{N-1}\ \ y\ \ \bar{x}_2 = \frac{\sum_{i=2}^{N-1}x_i}{N-1}
 $$
@@ -158,9 +174,11 @@ $$
 El filtrado es un conjunto de técnicas que sirven para resaltar o esconder ciertas características de las series, como la detección de saltos, picos, o estructuras particulares.
 
 Existen muchos tipos de transformaciones que suelen aplicarse, siendo el análisis de señales mediante filtros un curso en sí mismo. Dado que no es el objeto de este curso ahondar en estas técnicas, describiremos aquí algunos basados en dos operaciones matemáticas denominada __*convolución*__ y __*correlación*__. La convolución entre dos funciones continuas $f$ y $g$ de una sola variable se escribe como
+
 $$
 (f \star g)(\tau) = \int_{-\infty}^{\infty}f(t)g(t-\tau) dt,
 $$
+
 que puede interpretarse como la aplicación de una plantilla $g(t)$ sobre una función $f(t)$ desplazada en una cantidad $\tau$. Se puede observar cierta analogía con las correlaciones y la media móvil.
 
 Si por el contrario, se tienen dos series discretas $X(t_i)$ y $Y(t_i)$, la convolución discreta se escribe como
@@ -168,9 +186,11 @@ Si por el contrario, se tienen dos series discretas $X(t_i)$ y $Y(t_i)$, la conv
 $$
 (X \star Y)(\tau_j) = \sum_{i = 1}^{N_X}X(t_i)Y(t_i-\tau_j),
 $$
+
 donde $N_X$ es el número de muestras de la serie X, y el resultado $(X \star Y)(\tau_j)$ tendrá $N_X - N_Y$ puntos. Es usual encontrarse un aumentado de puntos para obtener la misma cantidad de puntos que la serie inicial. Esto se suele hacer agregando $N_Y/2$ valores al comienzo de $X$ y $N_Y/2$ ó $N_Y/2+1$ al final dependiendo de si el número de puntos $N_Y$ es par o impar respectivamente. Los valores que se agregan pueden ser constantes, o correspondientes a alguna extrapolación, o los valores del final de la serie X, para hacer la convolución circular.
 
 Por otra parte la correlación se escribe
+
 $$
 (f \circ g)(\tau) = \int_{-\infty}^{\infty}f(t+\tau)g(t) dt,
 $$
@@ -191,30 +211,37 @@ Esta función calcula la similitud entre dos señales, y cuando el número de da
 ### Covarianza
     
 La covarianza entre dos series temporales de igual longitud se escribe: 
+
 $$
     Cov(X,Y) = \frac{1}{N}\sum_{i=1}^N{(x_i-\bar{x})(y_i-\bar{y})}
 $$ 
+
 Si hacemos las transformaciones $\tilde{X} = X-\bar{x}$ y $\tilde{Y} =Y-\bar{y}$ se observa simplemente que la covarianza se puede calcular  
+
 $$
     Cov(X,Y) = (\tilde{Y} \circ \tilde{X})(\tau_0)
 $$
 
 ### Correlación
 De manera análoga a la covarianza, la correlación se puede calcular de manera inmediata realizando las siguientes transformaciones:
+
 $$
     \tilde{X} = \frac{X-\bar{x}}{\sigma_x} , \ \  \ \tilde{Y} =\frac{Y-\bar{y}}{\sigma_y}
 $$
+
 y utilizando la definición de correlación previa.
 
 ### Derivada centrada
 
 La derivada por diferencias finitas se puede obtener tomando simplemente como plantilla $(Y)$ el siguiente vector:
+
 $$
 Y = (1,0,-1)/\Delta t
 $$
 
 ### Suavizado Gaussiano
 Si se considera una plantilla en una ventana de tiempo con una distribución Gaussiana, se puede realizar un suavizado de la señal. En este caso:
+
 $$
 Y = \frac{1}{\sqrt{2\pi} \sigma }e^{-\frac{(t-\mu)^2}{2\sigma^2}}
 $$
