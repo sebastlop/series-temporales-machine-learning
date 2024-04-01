@@ -4,7 +4,7 @@ El aprendizaje automatizado o machine learning (ML) es un conjunto de herramient
 
 En el trabajo de modelado usual, lo que se realiza es proponer una forma funcional de las variables involucradas a partir de principios teóricos o observacionales que se denominan leyes.
 
-El ML lo que hace es proponer una forma general de relación funcional cuyas propiedades y formas relacionales se ajustan a partir de la observación.
+En el paradigma del ML lo que se hace es proponer una forma general de relación funcional cuyas propiedades y formas relacionales se ajustan a partir de la observación.
 
 Supongamos que para un proceso $P$, se propone un modelo que puede representarse mediante alguna relación $f$ de la siguiente manera $y = f(x)$, donde $x$ representa todas las magnitudes de entrada del modelo y $y$ todas las salidas.
 
