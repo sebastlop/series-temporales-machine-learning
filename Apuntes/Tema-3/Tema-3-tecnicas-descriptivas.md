@@ -43,7 +43,7 @@ Cualquiera de los tres casos previos es útil para el análisis de tendencias. U
 La media móvil, cuando es simétrica permite eliminar oscilaciones alrededor de la media. Si bien existen tratados sumamente exhaustivos, en este curso veremos la más simple de todas. La media móvil es una transformación que lleva nuestra distribución $X(t)$ en $Y(t)$. La expresión general de este tipo de transformaciones que llamaremos $Sm$ (por smooth):
 
 $$
-Sm[X(t_i)] = \sum_{r=-q}^{s}a_r X(t_{i+r})
+Sm[X(t_i)] = \sum_{r=-q}^{s} {a_r X(t_{i+r})}
 $$
 
 Si se toma $q=s$ y todos los pesos $a_r=\frac{1}{(2q+1)}$ tenemos la expresión típica de la media móvil en ventanas de ancho $2q+1$. La inspección de la media móvil sobre anchos diferentes puede servir para descartar oscilaciones y su ajuste para extraer la tendencia global, o por tramos. Es importante notar que este tipo de suavizados produce una nueva serie con $N-(2q+1)$ puntos.
