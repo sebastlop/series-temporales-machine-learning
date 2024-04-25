@@ -128,4 +128,8 @@ Para comprender este problema es importante ver [este notebook](./Tema-5-regresi
 
     * Extender el modelo para incorporar en el aprendizaje más días.
 
-2. 
+2. Para el mismo set de datos:
+    
+    * Realizar un predictor que sea capaz de distinguir entre las estaciones Salta y Ushuaia ¿cúantas variables o features son necesarias?
+
+    * Realizar lo mismo para las estaciones Salta y Tucuman
