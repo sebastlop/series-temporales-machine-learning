@@ -118,7 +118,7 @@ $$
 \end{align}
 $$
 
-Para comprender este problema es importante ver [este notebook](./Tema-5-regresion-logistica.ipynb)
+Para comprender este problema es importante ver [este notebook](./Tema-5-2-regresion-logistica.ipynb)
 
 # Ejercicios propuestos
 
