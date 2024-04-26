@@ -74,7 +74,7 @@ Una manera de clasificarlos en en términos del conocimiento que se posea sobre 
 * Si no se conoce el gradiente respecto de los parámetros la exploración se tiene que hacer al tanteo. Algunos algoritmos típicos son los siguientes
 
     *   Random search
-    *   Random walks
+    *   Random walk
     *   Algoritmo genético
     *   etc
 
