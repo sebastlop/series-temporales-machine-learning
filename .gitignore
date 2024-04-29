@@ -11,5 +11,5 @@ share/
 pyvenv.cfg
 STenv/
 
-*.pyc
 __pycache__/
+*.pyc
