@@ -1,4 +1,6 @@
 import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error
 
 def naive(x):
     '''
@@ -8,42 +10,39 @@ def naive(x):
     return np.take(x,-1,axis=x.ndim-1)
 
 class delayed_naive:
-    def __init__(self, delay = 1):
-
+    '''
+        Esta clase es un predictor univariado de regresion lineal para todos los datos del conjunto de entrenamiento
+        Es un wrapper de LinarRegression de SciKit learn.
+        Toma una serie temporal y genera un conjunto de entrenamiento donde x(t) = a * x(t-delay) + b
+    '''
+    def __init__(self, serie, delay = 1) -> None:
         self.delay = delay
+        self.x_train = serie[:-self.delay].reshape(-1,1)
+        self.y_train = serie[self.delay:].reshape(-1,1)
+        # Linear regressor
+        self._regresor = LinearRegression()
+        self._regresor.fit(self.x_train, self.y_train)
+        self.a = self._regresor.coef_.reshape(-1)[0]
+        self.b = self._regresor.intercept_.reshape(-1)[0]
+        # get MAE of training set
+        self.train_MAE = mean_absolute_error(self.y_train, self.predict(self.x_train))
 
-        # training stage
+    def get_attributes(self):
+        attr = {
+            'training_len' : len(self.x_train),
+            'training_MAE' : self.train_MAE,
+            'slope' : self.a,
+            'bias' : self.b  
+        }
+        return attr
+
+    def __call__(self, x):
+        return self.predict(x)
+
 
     def predict(self, x):
-        return self.slope * x + self.bias 
-
-    def loss(self, y, y_hat):
-        return np.mean((y_hat-y)**2)
-
-    def dloss(self, a, b, x, y_hat):
-        da = -2*np.mean((y_hat-a*x-b)*x)
-        db = -2*np.mean((y_hat-a*x-b))
-        return da, db
-
-    def train(self, x_train, y_train, epochs = 30, a = 1, b=1, lr = 0.2, hist = False):
-        if hist:
-            grad = self.dloss(a, b, x_train, y_train)  
-            history = [[a, b, self.loss(a*x_train + b , y_train)]] 
-
-        for i in range(epochs):
-            grad = self.dloss(a, b, x_train, y_train) 
-            a -= lr * grad[0]   
-            b -=  lr * grad[1]  
-            if hist:
-                history.append([a, b, self.loss(a*self.x+b,self.y)])  # guardo la historia
-
-        self.slope = a
-        self.bias = b
-        if hist:
-            return a, b, history
-        else:
-            return a, b
-
+        x.reshape(-1,1)
+        return self._regresor.predict(x)
 
 
 if __name__ == '__main__':
