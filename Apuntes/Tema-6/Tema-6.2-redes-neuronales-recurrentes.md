@@ -37,7 +37,7 @@ Con las RNN se pueden abordar una gran variedad de problemas:
 
 ## Problemas de las RNN
 
-Es sabido que las RNN comunes como las vistas hasta aquí tienen un grave problema cuando las series son largas, y es que los pesos de los pasos lejanos en el tiempo tienen gradientes que tienden a cero, o que explotan. Estos problemas son bien conocido y reciben el nombre de _gradient vanishing/exploding_. Para evitar este tipo de inconvenientes se suelen utilizar redes neuronales con memorias de corto y largo plazo. En esta categoría se encuentran las Gated Recurrent Units (GRU) y las Long-Term Short-Term Memory recurrent neural Networks (LSTM). Explicaremos en detalle esta última.
+Es sabido que las RNN comunes como las vistas hasta aquí tienen un grave problema cuando las series son largas, y es que los pesos de los pasos lejanos en el tiempo tienen gradientes que tienden a cero, o que explotan. Estos problemas son bien conocidos y reciben el nombre de _gradient vanishing/exploding_. Para evitar este tipo de inconvenientes se suelen utilizar redes neuronales con memorias de corto y largo plazo. En esta categoría se encuentran las Gated Recurrent Units (GRU) y las Long-Term Short-Term Memory recurrent neural Networks (LSTM). Explicaremos en detalle esta última.
 
 Para comprender el funcionamiento de las LSTM, es preciso analizar nuevamente lo que sucede dentro de cada unidad (neurona) de una RNN.
 
@@ -45,8 +45,40 @@ Lo que sucede dentro de cada unidad de una RNN simple, como se describe matemát
 Como en la siguiente figura:
 ![alt text](image-1.png)
 
-donde la función de activación $f$, corresponde a una tangente hiperbólica, que es la usual. En la Figura, $O_t$ corresponde a la salida, mientras que $h_t$ es la salida del estado interno, que será utilizado en el paso siguiente. Como se puede ver, durante el entrenamiento, para actualizar los pesos $w_h,$ se requiere desarrollar la serie hasta el comienzo, donde la propagación de los valores de los pesos
+donde la función de activación $f$, corresponde a una tangente hiperbólica, que es la usual. En la Figura, $O_t$ corresponde a la salida, mientras que $h_t$ es la salida del estado interno, que será utilizado en el paso siguiente. Como se puede ver, durante el entrenamiento, para actualizar los pesos $w_h,$ se requiere desarrollar la serie hasta el comienzo, donde la propagación de los valores de los pesos da lugar a los bien conocidos problemas mencionados. 
 
+Las LSTM tienen otra estructura interna, donde cada unidad se esquematiza en el siguiente diagrama:
 
-![alt text](image-2.png)
+![alt text](image-3.png)
+donde se puede observar que la estructura es diferente. Lo primero que se debe notar es que se tienen dos flujos diferentes de información. Estos flujos ($h_t$ y $C_t$) tienen dos propósitos completamente diferentes. Mientras que $h_t$ (llamado _short-term memory_) tiene un funcionamiento similar al de la RNN primitiva, el flujo de $C_t$ (_long-term memory_) trae información desde capas previas sin la acción de contracciones en serie hacia atrás en el tiempo.
+
+* La compuerta de _olvido_, cuya expresión matemática es la siguiente:
+$$
+f_t = \sigma(W_h\cdot h_{t-1}+W_{fx} \cdot x_t+b_f),
+$$
+y se puede interpretar de la siguiente manera: cuando $f_t$ se anula, elimina el flujo $C$, por lo que esta puerta permite _olvidar_ lo que ocurre en el pasado remoto.
+
+* La compuerta de _entrada_:
+
+$$
+i_t = \sigma(W_i\cdot h_{t-1}+W_{ix} \cdot x_t+b_i), \\
+\tilde{C_t} = tanh(W_C\cdot h_{t-1} +W_{Cx} \cdot x_t + b_C)
+$$
+con lo que el estado de la celda 
+$$
+C_t = i_t * \tilde{C_t} + C_{t-1} * f_t
+$$
+
+Esta compuerta añade la información nueva en el estado de la celda $C_t$.
+
+* La compuerta de _salida_:
+
+La compuerta de salida tiene dos componentes:
+$$
+o_t = \sigma(W_o\cdot h_{t-1} + W_{ox} \cdot x_t + b_o),
+$$
+y
+$$
+h_t = o_t * tanh(C_t)
+$$
 
