@@ -12,3 +12,4 @@ pyvenv.cfg
 STenv/
 
 *.pyc
+libs/__pycache__/read_smn.cpython-310.pyc
