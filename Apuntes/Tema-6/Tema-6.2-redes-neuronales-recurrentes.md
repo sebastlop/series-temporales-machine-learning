@@ -82,3 +82,6 @@ $$
 h_t = o_t * tanh(C_t)
 $$
 
+donde esta última será utilizada como la memoria de corto plazo a compartir con el próximo paso temporal.
+
+[en este link se encuentran implementaciones de predicción para este tipo de redes](./Tema-6.2.1-rnn.ipynb)
