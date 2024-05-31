@@ -7,9 +7,9 @@ Supogamos un caso bidimensional, donde una capa de entrada es una imagen(matriz 
 
 Al aplicar una convolución de un filtro $K$ de tamaño $(k\times l)$ sobre una matriz $M$ de $(m\times n)$ elementos, el resultado $(M\circ K)$ tendrá $(m-k, n-l)$ elementos. Si lo que se busca es preservar el tamaño de la imagen, reducirla, o alterar la manera de realizar estas convoluciones, existen dos operaciones muy populares denominadas __*padding*__ y __*stride*__.
 
-> **padding**: agregado de elementos en los bordes que permite mantener la dimensionalidad. Si en la operación de convolución previa se agrega un padding $(p,q)$, la dimensionalidad de la convolución será $(M\circ K)$ tendrá $(m-k+p, n-l+q)$
+> **padding**: agregado de elementos en los bordes que permite mantener la dimensionalidad. Si en la operación de convolución previa se agrega un padding $(p,q)$, la dimensionalidad de la convolución será $(M\circ K)$ tendrá $(m-k+2p, n-l+2q)$
 
-> **stride**: salto entre pasos de convolución. Normalmente este parámetro es 1, lo que significa que se recorre la convolución aplicando el kernel moviéndolo de a un elemento. Si el stride es mayor que uno, se aplicará el kernel saltando un número predefinido de elementos. Así, si uno tiene un stride $(s,t)$ para cada dimensión. Las dimensiones de la convolución será $(M\circ K)$ tendrá $[(m-k+p+s)/s, (n-l+q+t)/t ]$
+> **stride**: salto entre pasos de convolución. Normalmente este parámetro es 1, lo que significa que se recorre la convolución aplicando el kernel moviéndolo de a un elemento. Si el stride es mayor que uno, se aplicará el kernel saltando un número predefinido de elementos. Así, si uno tiene un stride $(s,t)$ para cada dimensión. Las dimensiones de la convolución será $(M\circ K)$ tendrá $[(m-k+2p)/s+1, (n-l+2q)/t + 1 ]$
 
 Mediante las operaciones de ***padding*** y ***stride*** se puede controlar el tamaño de salida de la imagen procesada
 
